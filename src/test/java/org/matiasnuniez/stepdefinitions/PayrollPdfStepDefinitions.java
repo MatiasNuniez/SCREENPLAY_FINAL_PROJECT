@@ -214,7 +214,7 @@ public class PayrollPdfStepDefinitions {
     public void theSystemShouldDisplayTheNotification(String expectedNotification) {
         administrator.attemptsTo(
                 WaitUntil.the(ReviewPageUi.DOWNLOAD_SUCCESS_NOTIFICATION, isVisible())
-                        .forNoMoreThan(TestData.DEFAULT_WAIT_SECONDS).seconds()
+                        .forNoMoreThan(30).seconds()
         );
         administrator.should(
                 seeThat(DownloadNotificationText.displayed(), containsString(expectedNotification))
