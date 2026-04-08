@@ -1,0 +1,25 @@
+package org.matiasnuniez.tasks;
+
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.waits.WaitUntil;
+import org.matiasnuniez.ui.EditEmployeePageUi;
+
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
+public class SaveEmployeeChanges implements Task {
+
+    @Override
+    public <T extends Actor> void performAs(T actor) {
+        actor.attemptsTo(
+                WaitUntil.the(EditEmployeePageUi.SAVE_BUTTON, isClickable())
+                        .forNoMoreThan(10).seconds(),
+                Click.on(EditEmployeePageUi.SAVE_BUTTON)
+        );
+    }
+
+    public static SaveEmployeeChanges onEditForm() {
+        return Tasks.instrumented(SaveEmployeeChanges.class);
+    }
+}
